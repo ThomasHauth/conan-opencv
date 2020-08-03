@@ -327,7 +327,7 @@ class OpenCVConan(ConanFile):
             cmake.definitions['WITH_JASPER'] = True
 
         # openjpeg
-        if self.options.jpeg2000 == "openjpeg":
+        elif self.options.jpeg2000 == "openjpeg":
             cmake.definitions['OpenJPEG_FOUND'] = True
             cmake.definitions['BUILD_OPENJPEG'] = False
             cmake.definitions['WITH_OPENJPEG'] = True
@@ -336,6 +336,9 @@ class OpenCVConan(ConanFile):
             cmake.definitions['OPENJPEG_MAJOR_VERSION'] = 2
             cmake.definitions['OPENJPEG_MINOR_VERSION'] = 3
             cmake.definitions['OPENJPEG_BUILD_VERSION'] = 1
+        else:
+            cmake.definitions['WITH_JASPER'] = False
+            cmake.definitions['WITH_OPENJPEG'] = False
 
         # JPEG
         cmake.definitions['BUILD_JPEG'] = False
